@@ -1,18 +1,16 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom';
+import MainPage from '../../pages/MainPage';
+import PostsPage from '../../pages/PostsPage';
+import UsersPage from '../../pages/UsersPage';
 
-import AppHeader from '../app-header';
-import SearchPanel from '../search-panel';
-import PostStatusFilter from '../post-status-filter';
-import PostList from '../post-list';
-import AppMenu from '../menu'
-import PostListItem from '../post-list-item'
 import './app.css';
 
 const App = () => {
     return (
         // <div className="app">
             <div id ="container">
-                <div>
+                {/* <div>
                     <AppHeader/>
                 </div>
 
@@ -21,18 +19,18 @@ const App = () => {
                     <div id="content">
                         <PostListItem/>
                     </div>
-            </div>
-           
-        
-            {/* <div className="search-panel d-flex">
-                <SearchPanel/>
-                <PostStatusFilter/>
             </div> */}
-            {/* <PostList/> */}
+           
+          {/* Добавил путь к '/' и '/posts' используя компоненты react-roter'a
+              component - это компонент отвечающий за страницу на данном пути */}
+
+           <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/posts" component={PostsPage} />
+            <Route exact path="/users" component={UsersPage} />
+           </Switch>
       
         </div>
-
-        
     )
 }
 
