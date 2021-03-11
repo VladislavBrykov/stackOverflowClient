@@ -47,7 +47,7 @@
 } */
 
 #container {
-  background: #eaeaea;
+  background: url(./fon.jpg) 50% 50%;
   margin: auto;
   text-align: center;
   width: 100%;

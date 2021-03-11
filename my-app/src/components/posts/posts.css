@@ -1,0 +1,30 @@
+#pressed {
+    color: #E6E0E0;
+    margin-bottom: 1cm;
+    margin-left: -2cm;
+    width: 250%;
+    background: rgb(0, 0, 0);
+    border: 1px solid #000;
+    border-right: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+           border-radius: 5px; 
+   }
+
+   #h2 {
+       color:rgb(251, 148, 31);
+       font-weight: bold;
+       text-align: center;
+   }
+
+   #h4 {
+    color:rgb(254, 254, 254);
+    text-align: left;
+    margin-left: 1cm;
+}
+
+    #search {
+        text-align: center;
+        margin-bottom: 0.5cm;
+    }

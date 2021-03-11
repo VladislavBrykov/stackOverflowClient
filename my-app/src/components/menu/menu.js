@@ -3,6 +3,20 @@ import { Link } from 'react-router-dom';
 import './menu.css';
 
 const AppMenu = () => {
+
+  if (localStorage.role === "admin") {
+    //loginButton = <button id="btn" class="active" onClick={() => loadData()} >Выйти</button>
+    // loginButton = <button id="btn">onClick={() => loadData()}<Link to="/">Logout</Link></button>;
+    let menu;
+    menu = <div class="btn-group">
+    <button class="button"><Link to="/">Главная</Link></button>
+    <button class="button"><Link to="/categories">Категории</Link></button>
+    <button class="button"><Link to="/users">Участники</Link></button>
+    <button class="button"><Link to="/posts">Посты</Link></button>
+    <button class="button"><Link to="/new-post">Добавить пост</Link></button>
+  </div>
+     
+   }
 //     myfunction() {
 //         console.log("CLICKED");
 //   }
@@ -19,8 +33,9 @@ const AppMenu = () => {
     <div class="btn-group">
       <button class="button"><Link to="/">Главная</Link></button>
       <button class="button"><Link to="/categories">Категории</Link></button>
-      <button class="button"><Link to="/members">Участники</Link></button>
-      <button class="button"><Link to="/posts">Button</Link></button>
+      <button class="button"><Link to="/users">Участники</Link></button>
+      <button class="button"><Link to="/posts">Посты</Link></button>
+      <button class="button"><Link to="/new-post">Добавить пост</Link></button>
     </div>
 
     )
