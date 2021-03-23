@@ -2,46 +2,41 @@ import React from 'react'
 import './app-header.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 
 class AppHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      role: localStorage.role
-    };
-  }
-  render() {
 
-    const loadData = async () => { //Функция с запросом на сервер
+  async loadData () { //Функция с запросом на сервер
   
-      axios.defaults.baseURL = 'http://localhost:3000/api';  
-      const body = {};
-      const res = await axios.post(
-        `/auth/logout`,
-        body,
-        {
-        headers: {
-          Authorization: localStorage.jwtToken
-        }
+    axios.defaults.baseURL = 'http://localhost:3000/api';  
+    const body = {};
+    await axios.post(
+      `/auth/logout`,
+      body,
+      {
+      headers: {
+        Authorization: localStorage.jwtToken
       }
-      );
-      delete localStorage.jwtToken;
-      delete localStorage.role;
-      this.state.role = null;
-      //window.location.reload(); 
     }
+    )
+    .then(() =>  this.setState({role: null})  )
+     
+    delete localStorage.jwtToken;
+    delete localStorage.role;
+  }
 
+  render() {
     let loginButton;
-
-    if (this.state.role === "admin") {
+    
+    //if (this.state.role) {
+      if(this.setState.loggedIn === "onn") {
       loginButton = 
       <div class="header"> 
-        <button id="btn" onClick={() => loadData()}><Link to="/login">Logout</Link></button>;
+        <button id="btn" onClick={() => this.loadData()}><Link to="/login">Logout</Link></button>;
       </div>
     }
 
     else {
+     // console.log(props);
       loginButton = 
       <div class="header"> 
         <button id="btn"><Link to="/login">Login</Link></button>;
@@ -111,3 +106,21 @@ export default AppHeader;
 // }
 
 // export default AppHeader;
+
+  // Короче тебе нужно переписать
+  // Тебе сначало нужно реализовать правильно логин, и сделать отдельный стейт
+  // Когда будет стейт для логина, тогда при логауте ты его будешь менять
+  // Сейчас выходит что у тебя для логина в реакте нет состояния, только localStorage
+  //ты сможешь это сделать? и цена
+  // не уверен, что это будет быстро)
+  // так как я с хуками работаю а тут тебе по хорошему если не используешь хуки то использовать редакс
+  // тебе состояние логина нужно передавать полностью во все приложение, а не только в хедер
+  // и это нужно делать на самом высоком уровне
+  // потому что если ты продолжишь делать так, как сейчас, то тебе в каждый компонент надо будет как-то засовывать состояние логина
+  // по этому на высшел уровне где то в App.js к примеру ты делаешь стейт и потом если не работаешь с редакс то просто его передаешь через пропсы в дочерние компоненты
+  // короче нужно переделывать все
+  // лучше сам начни все переделыват,а там вопросы будут - пиши
+  //окей, пачалька =(
+    // Страано просто ты начал с логаута, а не логина )))
+    //спасибо, сори что голову поморил
+    // та ниче) удачи в обучении)) если шо пиши
