@@ -27,8 +27,8 @@ class AppHeader extends React.Component {
   render() {
     let loginButton;
     
-    //if (this.state.role) {
-      if(this.setState.loggedIn === "onn") {
+    if (localStorage.role) {
+      //if(this.setState.loggedIn === "onn") {
       loginButton = 
       <div class="header"> 
         <button id="btn" onClick={() => this.loadData()}><Link to="/login">Logout</Link></button>;
