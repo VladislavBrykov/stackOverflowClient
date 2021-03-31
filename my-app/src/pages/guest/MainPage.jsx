@@ -1,5 +1,3 @@
-import AppHeader from '../../components/app-header';
-import AppMenu from '../../components/menu'
 import MainPage from '../../components/main-page'
 
 function Main(params) {
@@ -11,13 +9,11 @@ function Main(params) {
   }
   return (
     <div>
-    <AppHeader/>
-      <AppMenu/>
-        {/* <div>  */}
-        <MainPage/>
-        {/* </div> */}
-    
-      </div>
+      {/* <div>  */}
+      <MainPage />
+      {/* </div> */}
+
+    </div>
   );
 }
 

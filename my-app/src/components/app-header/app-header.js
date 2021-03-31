@@ -5,49 +5,40 @@ import axios from 'axios';
 
 class AppHeader extends React.Component {
 
-  async loadData () { //Функция с запросом на сервер
-  
-    axios.defaults.baseURL = 'http://localhost:3000/api';  
+  async loadData() { //Функция с запросом на сервер
+
+    axios.defaults.baseURL = 'http://localhost:3000/api';
     const body = {};
     await axios.post(
       `/auth/logout`,
       body,
       {
-      headers: {
-        Authorization: localStorage.jwtToken
+        headers: {
+          Authorization: localStorage.jwtToken
+        }
       }
-    }
     )
-    .then(() =>  this.setState({role: null})  )
-     
+      .then(() => this.props.changeLoggedIn('off'))
+
     delete localStorage.jwtToken;
     delete localStorage.role;
   }
 
   render() {
-    let loginButton;
-    
-    if (localStorage.role) {
-      //if(this.setState.loggedIn === "onn") {
-      loginButton = 
-      <div class="header"> 
-        <button id="btn" onClick={() => this.loadData()}><Link to="/login">Logout</Link></button>;
-      </div>
-    }
-
-    else {
-     // console.log(props);
-      loginButton = 
-      <div class="header"> 
-        <button id="btn"><Link to="/login">Login</Link></button>;
-        <button id="btn"><Link to="/registration">Registration</Link></button>
-        <a href="/login" class="logo">Возможности ограничены: Авторизируйтесь</a>
-      </div>
-    }
 
     return (
       <div class="header">
-        {loginButton}
+        {
+          this.props.loggedIn === "admin" || this.props.loggedIn === "user"
+            ? <div class="header">
+              <button id="btn" onClick={() => this.loadData()}><Link to="/login">Logout</Link></button>;
+            </div>
+            : <div class="header">
+              <button id="btn"><Link to="/login">Login</Link></button>
+              <button id="btn"><Link to="/registration">Registration</Link></button>
+              <a href="/login" class="logo">Возможности ограничены: Авторизируйтесь</a>
+            </div>
+        }
       </div>
     );
   }
@@ -64,7 +55,7 @@ export default AppHeader;
 //   let logo;
 
     // const loadData = async () => { //Функция с запросом на сервер
-  
+
     //   axios.defaults.baseURL = 'http://localhost:3000/api';  
     //   const body = {};
     //   const res = await axios.post(
@@ -86,13 +77,13 @@ export default AppHeader;
 //       //loginButton = <button id="btn" class="active" onClick={() => loadData()} >Выйти</button>
 //       // loginButton = <button id="btn">onClick={() => loadData()}<Link to="/">Logout</Link></button>;
 //       loginButton = <button id="btn" onClick={() => loadData()}><Link to="/login">Logout</Link></button>;
-       
+
 //      } else {
 //        loginButton = <button id="btn"><Link to="/login">Login</Link></button>;
 //        registrationButton = <button id="btn"><Link to="/registration">Registration</Link></button>
 //        logo = <a href="/login" class="logo">Возможности ограничены: Авторизируйтесь</a>
 //      }
-    
+
 //     return (
 //       <div class="header">
 //         {logo}
