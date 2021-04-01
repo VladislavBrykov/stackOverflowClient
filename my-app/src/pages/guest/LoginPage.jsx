@@ -13,9 +13,14 @@ class LoginPage extends React.Component {
 
     async loadData() { //Функция с запросом на сервер
 
-
+        let login = document.getElementById('login').value;
+        let password = document.getElementById('pass').value;
+        let email = document.getElementById('email').value;
         
-        const body = { "login": "user1", "password": "qwe", "email": "user1@gmail.com" } // То что передаем на сервер
+        const body = { "login": "user1", "password": "qwe", "email": "user1@gmail.com" } 
+       // const body = { "login": login, "password": password, "email": email } 
+
+       
         console.log(body);
         axios.defaults.baseURL = 'http://localhost:3000/api';
         const res = await axios.post(
@@ -60,13 +65,13 @@ class LoginPage extends React.Component {
                             <p class="form_auth_block_head_text">Авторизация</p>
                             <form class="form_auth_style" action="#" method="post">
                                 <label>Введите Ваш логин</label>
-                                <input type="loginl" name="auth_login" placeholder="Введите Ваш логин" required ></input>
+                                <input type="loginl" name="auth_login" placeholder="Введите Ваш логин" id="login" required ></input>
                                 <label>Введите Ваш пароль</label>
-                                <input type="password" name="auth_pass" placeholder="Введите пароль" required ></input>
+                                <input type="password" name="auth_pass" placeholder="Введите пароль" id="pass" required ></input>
                                 <label>Введите Ваш имейл</label>
-                                <input type="email" name="auth_email" placeholder="Введите Ваш имейл" required ></input>
+                                <input type="email" name="auth_email" placeholder="Введите Ваш имейл" id="email" required ></input>
 
-                                <button class="form_auth_button" type="submit" name="form_auth_submit" onClick={() => this.loadData()}>Login</button>
+                                <button class="form_auth_button" type="submit" name="form_auth_submit" onClick={() => this.loadData()}><Link to="/">Login</Link></button>
 
                                 <button class="form_auth_button" type="submit" ><Link to="/password-reset">Восстановление пароля</Link></button>
                             </form>
