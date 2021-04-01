@@ -41,11 +41,11 @@ function PostIdPage(params) {// Страница постов
     username = await axios.get("http://localhost:3000/api/users/" + result[0].id_user)
     console.log(username);
 
- result[0].username = username.data.rp.login;
+    result[0].username = username.data.rp.login;
 
- axios.defaults.baseURL = 'http://localhost:3000/api';
- const res_cat = await axios.get("http://localhost:3000/api/posts/" + result[0].id + "/comments" )
- console.log(res_cat);
+    axios.defaults.baseURL = 'http://localhost:3000/api';
+    const res_cat = await axios.get("http://localhost:3000/api/posts/" + result[0].id + "/comments")
+    console.log(res_cat);
     ////console.log(result);
     //  result = {
     //     "id": res.data.rp.id,
@@ -54,10 +54,6 @@ function PostIdPage(params) {// Страница постов
     //  }
     setDataFromServer(result)
   }
-  
-  function newComment
-
-  
 
   return (
     <div>
@@ -69,23 +65,23 @@ function PostIdPage(params) {// Страница постов
           dataFromServer
             // И тут выходит мы српвшиваем, если у нас есть что-то в стейте, тогда выводим этот стейт, а если нет, то тогда показываем лоадер !
             // как то так )
-            ? dataFromServer.map((item, index) => 
-            // <div class="wrap" id="pressed">
-            //   <h2 class="flex" key={index}>{item.title}</h2>
-              
-            //   <h4 class="flex" key={index}>{item.content}</h4>
-            //   <label>Название</label>
-            // </div>)
-            <div style={styles} class="form_auth_block">
-            <div class="form_auth_block_content">
-                <p class="form_auth_block_head_text"key={index}>{item.title}</p>
-                <form class="form_auth_style" action="#" method="post">
-                <label key={index}>{item.content}</label>  
-                <label key={index}>{item.username}</label>
-                <label key={index}>{item.category}</label>  
+            ? dataFromServer.map((item, index) =>
+              // <div class="wrap" id="pressed">
+              //   <h2 class="flex" key={index}>{item.title}</h2>
 
-                                <button class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true">+</i></button>
-                                <button class="like" placeholder="-"><i class="fa fa-thumbs-o-up" aria-hidden="true">-</i></button>
+              //   <h4 class="flex" key={index}>{item.content}</h4>
+              //   <label>Название</label>
+              // </div>)
+              <div style={styles} class="form_auth_block">
+                <div class="form_auth_block_content">
+                  <p class="form_auth_block_head_text" key={index}>{item.title}</p>
+                  <form class="form_auth_style" action="#" method="post">
+                    <label key={index}>{item.content}</label>
+                    <label key={index}>{item.username}</label>
+                    <label key={index}>{item.category}</label>
+
+                    <button class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true">+</i></button>
+                    <button class="like" placeholder="-"><i class="fa fa-thumbs-o-up" aria-hidden="true">-</i></button>
 
                     <label>Вы можете оставить комментарий</label>
                     <textarea rows="1" cols="52" name="textArea" required></textarea>
@@ -93,12 +89,12 @@ function PostIdPage(params) {// Страница постов
                     <button class="form_auth_button" type="submit" name="form_auth_submit" onClick={() => loadData()}><Link to="/posts">Читать все комментарии</Link></button>
 
                     {/* <button class="learnmore">Читать все комментарии</button> */}
-                    
 
 
-                </form>
-            </div>
-        </div>)
+
+                  </form>
+                </div>
+              </div>)
             : document.addEventListener('DOMContentLoaded', loadData()) //показать всех пользователей запуск функции при загрузке страници
 
         }

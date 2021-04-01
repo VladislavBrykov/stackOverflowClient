@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/app'
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
+import App from './components/app'
+import Footer from './components/Footer'
+
+import './index.css';
+
 console.log("before request");
 axios.defaults.baseURL = 'http://localhost:3001/api';
-
-// axios.get("http://localhost:3000/api/categories")
-// .then(({data}) => {
-//   console.log(data);
-// })
 
 //Добавил роутер на топ уровнь приложения.
 
@@ -20,6 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
+      {/* <Footer /> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

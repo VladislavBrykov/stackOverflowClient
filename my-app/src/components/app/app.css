@@ -22,6 +22,7 @@
   text-transform: uppercase;
   border-radius:6px;
 } */
+
 /* .mybtn:hover {
   color: #fff;
   background: rgb(104, 201, 249);
@@ -29,7 +30,6 @@
   -webkit-transition: all .3s linear;
   -moz-transition: all .3s linear; 
 } */
-
 
 /* #search {
   width: 70%;
@@ -51,7 +51,7 @@
   margin: auto;
   text-align: center;
   width: 100%;
-  height: 1000px;
+  min-height: 1000px;
 }
 
 #content {
@@ -82,6 +82,7 @@
   width: 20%;
   height: 280px;
 } */
+
 /* 
 #content {
   background: #DCDCDC;

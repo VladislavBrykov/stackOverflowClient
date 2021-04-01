@@ -27,7 +27,7 @@ class AppHeader extends React.Component {
   render() {
 
     return (
-      <div class="header">
+      <div class="header-wrapper">
         {
           this.props.loggedIn === "admin" || this.props.loggedIn === "user"
             ? <div class="header">

@@ -1,1 +1,0 @@
-(()=>{"use strict";new class{constructor(o,t,i){this.width=o,this.height=t,this.count=i}nextSlide(){console.log("Moving forvard")}prevSlide(){console.log("moving back")}whoAmI(){console.log(this.width,this.height,this.count)}}(400,500,5).whoAmI()})();
