@@ -15,6 +15,7 @@ import AppMenu from './../menu'
 import Footer from './../Footer'
 
 import RegisterTokenPage from '../../pages/guest/RegisterTokenPage'
+import AccauntPage from '../../pages/Accaunt.jsx'
 
 import './app.css';
 
@@ -56,6 +57,7 @@ const App = () => {
                     <Route exact path="/post-id/:id" render={() => <PostIdPage />} />
 
                     <Route exact path="/register/:id" render={() => <RegisterTokenPage />} />
+                    <Route exact path="/accaunt" render={() => <AccauntPage />} />
                 </Switch>
 
             </div>
