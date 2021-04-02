@@ -1,38 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../components/guest/login/login.css';
 
-class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+const styles = {//Стили для страницы
+    position: 'absolute',
+    top: '70px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+}
 
-        };
-    }
 
-    async loadData() { //Функция с запросом на сервер
+export default ({
+    changeLoggedIn
+}) => {
 
-        let login = document.getElementById('login').value;
-        let password = document.getElementById('pass').value;
-        let email = document.getElementById('email').value;
-        
-        const body = { "login": "user1", "password": "qwe", "email": "user1@gmail.com" } 
-       // const body = { "login": login, "password": password, "email": email } 
+    const [UserData, changeUserData] = useState({
+        login: '',
+        password: '',
+        email: '',
+    })
 
-       
-        console.log(body);
+    const loadData = async () => { //Функция с запросом на сервер
+        // const body = { "login": "user1", "password": "qwe", "email": "user1@gmail.com" }
+
         axios.defaults.baseURL = 'http://localhost:3000/api';
+
         const res = await axios.post(
             `/auth/login`,
-            body
-        )
+            UserData
+        ).catch(err => {
+            return alert(`Что-то пошло нет так. ${err.rmessage}`)
+        })
+
+        // отлов ошибок, можно сделать большую вариацию по коду
+        if (res && res.status != 200) {
+            return alert(res.data ? res.data : 'Что-то пошло нет так')
+        } else if (res && !res.data.status) {
+            return alert(res.data.error ? res.data.error : 'Что-то пошло нет так')
+        }else if(!res)
+            return;
+
         let role = res.data.rp
         role = role.role;
         console.log(res.data.rp)
 
         if (role === "admin") {
-            this.props.changeLoggedIn("admin")
+            changeLoggedIn("admin")
             localStorage.jwtToken = res.data.jwtToken   //https://learn.javascript.ru/localstorage
             localStorage.role = res.data.rp.role        //https://learn.javascript.ru/localstorage
             localStorage.id = res.data.rp.id
@@ -40,7 +54,7 @@ class LoginPage extends React.Component {
             //setDataFromServer(res.data)
         }
         else if (role === "user") {
-            this.props.changeLoggedIn("user")
+            changeLoggedIn("user")
             localStorage.jwtToken = res.data.jwtToken   //https://learn.javascript.ru/localstorage
             localStorage.role = res.data.rp.role        //https://learn.javascript.ru/localstorage
             localStorage.id = res.data.rp.id
@@ -49,38 +63,28 @@ class LoginPage extends React.Component {
         }
     }
 
-    render() {
-        const styles = {//Стили для страницы
-            position: 'absolute',
-            top: '70px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-        }
-
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    <div style={styles} class="form_auth_block">
-                        <div class="form_auth_block_content">
-                            <p class="form_auth_block_head_text">Авторизация</p>
-                            <form class="form_auth_style" action="#" method="post">
-                                <label>Введите Ваш логин</label>
-                                <input type="loginl" name="auth_login" placeholder="Введите Ваш логин" id="login" required ></input>
-                                <label>Введите Ваш пароль</label>
-                                <input type="password" name="auth_pass" placeholder="Введите пароль" id="pass" required ></input>
-                                <label>Введите Ваш имейл</label>
-                                <input type="email" name="auth_email" placeholder="Введите Ваш имейл" id="email" required ></input>
+                <div style={styles} className="form_auth_block">
+                    <div className="form_auth_block_content">
+                        <p className="form_auth_block_head_text">Авторизация</p>
+                        <form className="form_auth_style">
+                            <label>Введите Ваш логин</label>
+                            <input type="loginl" name="auth_login" onChange={e => changeUserData({ ...UserData, login: e.target.value })} placeholder="Введите Ваш логин" id="login" required ></input>
+                            <label>Введите Ваш пароль</label>
+                            <input type="password" name="auth_pass" onChange={e => changeUserData({ ...UserData, password: e.target.value })} placeholder="Введите пароль" id="pass" required ></input>
+                            <label>Введите Ваш имейл</label>
+                            <input type="email" name="auth_email" onChange={e => changeUserData({ ...UserData, email: e.target.value })} placeholder="Введите Ваш имейл" id="email" required ></input>
 
-                                <button class="form_auth_button" type="submit" name="form_auth_submit" onClick={() => this.loadData()}><Link to="/">Login</Link></button>
+                            <button className="form_auth_button" type="button" name="form_auth_submit" onClick={() => loadData()}><Link to="/">Login</Link></button>
 
-                                <button class="form_auth_button" type="submit" ><Link to="/password-reset">Восстановление пароля</Link></button>
-                            </form>
-                        </div>
+                            <button className="form_auth_button" type="button" ><Link to="/password-reset">Восстановление пароля</Link></button>
+                        </form>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
 
-export default LoginPage;
+};

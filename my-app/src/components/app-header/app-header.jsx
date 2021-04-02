@@ -27,16 +27,16 @@ class AppHeader extends React.Component {
   render() {
 
     return (
-      <div class="header-wrapper">
+      <div className="header-wrapper">
         {
           this.props.loggedIn === "admin" || this.props.loggedIn === "user"
-            ? <div class="header">
+            ? <div className="header">
               <button id="btn" onClick={() => this.loadData()}><Link to="/login">Logout</Link></button>;
             </div>
-            : <div class="header">
+            : <div className="header">
               <button id="btn"><Link to="/login">Login</Link></button>
               <button id="btn"><Link to="/registration">Registration</Link></button>
-              <a href="/login" class="logo">Возможности ограничены: Авторизируйтесь</a>
+              <a href="/login" className="logo">Возможности ограничены: Авторизируйтесь</a>
             </div>
         }
       </div>
@@ -74,21 +74,21 @@ export default AppHeader;
     // }
 
 //     if (localStorage.jwtToken) {
-//       //loginButton = <button id="btn" class="active" onClick={() => loadData()} >Выйти</button>
+//       //loginButton = <button id="btn" className="active" onClick={() => loadData()} >Выйти</button>
 //       // loginButton = <button id="btn">onClick={() => loadData()}<Link to="/">Logout</Link></button>;
 //       loginButton = <button id="btn" onClick={() => loadData()}><Link to="/login">Logout</Link></button>;
 
 //      } else {
 //        loginButton = <button id="btn"><Link to="/login">Login</Link></button>;
 //        registrationButton = <button id="btn"><Link to="/registration">Registration</Link></button>
-//        logo = <a href="/login" class="logo">Возможности ограничены: Авторизируйтесь</a>
+//        logo = <a href="/login" className="logo">Возможности ограничены: Авторизируйтесь</a>
 //      }
 
 //     return (
-//       <div class="header">
+//       <div className="header">
 //         {logo}
-//         <div class="header-right">
-//           <a class="active" href="#home">Home</a>
+//         <div className="header-right">
+//           <a className="active" href="#home">Home</a>
 //           {loginButton}
 //           {registrationButton}
 //         </div>
