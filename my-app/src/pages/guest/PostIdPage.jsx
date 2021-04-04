@@ -18,7 +18,6 @@ function PostIdPage(params) {// Страница постов
   }
 
   let result;
-  let category;
   let username;
 
   const [dataFromServer, setDataFromServer] = useState(null); //Используем хук состояния для данных с сервера
@@ -44,8 +43,19 @@ function PostIdPage(params) {// Страница постов
     result[0].username = username.data.rp.login;
 
     axios.defaults.baseURL = 'http://localhost:3000/api';
-    const res_cat = await axios.get("http://localhost:3000/api/posts/" + result[0].id + "/comments")
-    console.log(res_cat);
+    const comment_1 = await axios.get("http://localhost:3000/api/posts/" + result[0].id + "/comments")
+    if(comment_1.data.rp[0])
+    result[0].comment_1 = comment_1.data.rp[0].comment;
+    else {
+      result[0].comment_1 = "comment exists";
+    }
+  
+   
+    //axios.defaults.baseURL = 'http://localhost:3000/api';
+    //const comment_2 = await axios.get("http://localhost:3000/api/posts/" + result[0].id + "/comments")
+    //result[1].comment_2 = comment_2.data.rp[1].comment;
+
+    console.log(comment_1);
     ////console.log(result);
     //  result = {
     //     "id": res.data.rp.id,
@@ -79,6 +89,9 @@ function PostIdPage(params) {// Страница постов
                     <label key={index}>{item.content}</label>
                     <label key={index}>{item.username}</label>
                     <label key={index}>{item.category}</label>
+
+                    <label key={index}>{"comment: " + item.comment_1}</label>
+                    <label key={index}>{item.comment_2}</label>
 
                     <button class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true">+</i></button>
                     <button class="like" placeholder="-"><i class="fa fa-thumbs-o-up" aria-hidden="true">-</i></button>

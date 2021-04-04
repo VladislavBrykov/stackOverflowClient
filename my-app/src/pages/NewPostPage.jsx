@@ -11,6 +11,8 @@ function NewPostsPage(params) {// Страница постов
     transform: 'translateX(-50%)'
   }
 
+
+  
   const [dataFromServer, SetDataFromServer] = useState(null); //Используем хук состояния для данных с сервера
 
   const loadData = async () => { //Функция с запросом на сервер
@@ -51,10 +53,13 @@ function NewPostsPage(params) {// Страница постов
     //type - это тип\название данных пользователя например 'Token', string - это сами данные, например 'da7dasda8d7asf8sd7fs'
 
     const data = res.data;
-    SetDataFromServer(data); //Обновляем состояние и записываем полученые данные
+    SetDataFromServer(data); //Обновляем состояние и записываем полученые данн
+    window.location.reload();
+
   }
 
   console.log(dataFromServer);
+  
 
   //Выводим статус из ответа сервер если он есть, а если нету то null
 

@@ -49,7 +49,8 @@ export default ({ }) => {
 
     if (res.status == 200)
       loadData()
-
+      else 
+      alert(`Что-то пошло нет так.`)
   }
 
   useEffect(() => {

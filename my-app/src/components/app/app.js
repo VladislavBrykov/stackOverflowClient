@@ -16,6 +16,7 @@ import Footer from './../Footer'
 
 import RegisterTokenPage from '../../pages/guest/RegisterTokenPage'
 import AccauntPage from '../../pages/Accaunt.jsx'
+import CommentsPage from '../../pages/guest/PostsPage';
 
 import './app.css';
 
@@ -58,6 +59,7 @@ const App = () => {
 
                     <Route exact path="/register/:id" render={() => <RegisterTokenPage />} />
                     <Route exact path="/accaunt" render={() => <AccauntPage />} />
+                    <Route exact path="posts/:id/comments" render={() => <CommentsPage />} />
                 </Switch>
 
             </div>
